@@ -88,7 +88,18 @@
         }
         </style>
      <script>
+        const existingIDs = ['AA1111','XY1234'];
+        const getRandomLetters = (length = 1) => Array(length).fill().map(e => String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join('');
+        const getRandomDigits = (length = 1) => Array(length).fill().map(e => Math.floor(Math.random() * 10)).join('');
+        const generateUniqueID = () => {
+        let id = getRandomLetters(2) + getRandomDigits(4);
+        while (existingIDs.includes(id)) id = getRandomLetters(2) + getRandomDigits(4);
+        return id;
+        };
+
+
         function outputPAJson() {
+            var newID = generateUniqueID();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
@@ -98,7 +109,7 @@
             var text = document.getElementById('text').value
             var data = 
                     {
-            "PayerRuleId": "a2d536ae-7b64-441a-b27e-4760cad3f4b5",
+            "PayerRuleId": newID,
             "RuleName": ruleName,
             "RuleType": ruleType,
             "RuleDescription": ruleDesc,
