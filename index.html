@@ -131,9 +131,6 @@
             <label label id="nextStep">Rule Information</label>
         </li>
         <li>
-            <label label id="APIresponse">Response:</label>
-        </li>
-        <li>
             <label>Rule Name <span class="required">*</span></label>
             <input type="text" id="ruleName" name="ruleName" class="field-long" />
         </li>
@@ -157,13 +154,10 @@
             <option value="ICD"> ICD-10</option>
             <option value="LOI">LOINC</option>
         </select><br>    
-        Code: <br> <input type="text" id="code"><br>
-        Display: <br> <input type="text" id="display"><br>
-        Text: <br> <input type="text" id="text"><br>
-        <li>
-            <label>Notes </label>
-            <textarea name="notes" id="notes" class="field-long field-textarea"></textarea>
-        </li>
+        Code: <br> <input type="text" id="code" class="field-long"><br>
+        Display: <br> <input type="text" id="display" class="field-long"><br>
+        Text: <br> <input type="text" id="text" class="field-long"><br>
+        
         <li>
             <input type="submit" value="Submit" />
         </li>
