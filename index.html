@@ -97,9 +97,10 @@
         return id;
         };
 
-
+        import { uuidv7 } from 'uuidv7';
+        console.log('Your UUID is: ' + myuuid);
         function outputPAJson() {
-            var newID = uuid.v4()
+            var newID = uuidv7();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
