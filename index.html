@@ -99,7 +99,7 @@
 
 
         function outputPAJson() {
-            var newID = generateUniqueID();
+            var newID = uuid.v4()
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
