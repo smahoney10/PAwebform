@@ -1,0 +1,181 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <title>Prior Authorization Item Webform</title>
+    <style type="text/css">
+        .form-style-1 {
+            margin:10px auto;
+            max-width: 400px;
+            padding: 20px 12px 10px 20px;
+            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        }
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+        .form-style-1 label{
+            margin:0 0 3px 0;
+            padding:0px;
+            display:block;
+            font-weight: bold;
+        }
+        .form-style-1 input[type=text], 
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea, 
+        select{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border:1px solid #BEBEBE;
+            padding: 7px;
+            margin:0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;	
+        }
+        .form-style-1 input[type=text]:focus, 
+        .form-style-1 input[type=date]:focus,
+        .form-style-1 input[type=datetime]:focus,
+        .form-style-1 input[type=number]:focus,
+        .form-style-1 input[type=search]:focus,
+        .form-style-1 input[type=time]:focus,
+        .form-style-1 input[type=url]:focus,
+        .form-style-1 input[type=email]:focus,
+        .form-style-1 textarea:focus, 
+        .form-style-1 select:focus{
+            -moz-box-shadow: 0 0 8px #88D5E9;
+            -webkit-box-shadow: 0 0 8px #88D5E9;
+            box-shadow: 0 0 8px #88D5E9;
+            border: 1px solid #88D5E9;
+        }
+        .form-style-1 .field-divided{
+            width: 49%;
+        }
+        
+        .form-style-1 .field-long{
+            width: 100%;
+        }
+        .form-style-1 .field-select{
+            width: 100%;
+        }
+        .form-style-1 .field-textarea{
+            height: 100px;
+        }
+        .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+            background: #4B99AD;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+        .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+            background: #4691A4;
+            box-shadow:none;
+            -moz-box-shadow:none;
+            -webkit-box-shadow:none;
+        }
+        .form-style-1 .required{
+            color:red;
+        }
+        </style>
+     <script>
+        function outputPAJson() {
+            var ruleName = document.getElementById('ruleName').value;
+            var ruleType = document.getElementById('ruleType').value;
+            var ruleDesc = document.getElementById('ruleDesc').value;
+            var codeSystem = document.getElementById('codeSystem').value;
+            var code = document.getElementById('code').value;
+            var display = document.getElementById('display').value;
+            var text = document.getElementById('text').value
+            var data = 
+                    {
+            "PayerRuleId": "a2d536ae-7b64-441a-b27e-4760cad3f4b5",
+            "RuleName": ruleName,
+            "RuleType": ruleType,
+            "RuleDescription": ruleDesc,
+            "ServiceRequestCodes": [
+                {
+                    "System": codeSystem,
+                    "Code": code,
+                    "Display": display,
+                    "Text": text
+                }
+                ]
+            }
+
+           ;
+            document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
+            
+            document.getElementById('nextStep').innerHTML = "JSON generated below. ";
+            //sendToCDC();
+            return false;
+        }
+            </script>
+</head>
+<body>
+<form onsubmit="return outputPAJson()" id="jsonForm">
+    <ul class="form-style-1">
+        <li>
+        <h2>Payer PA Rule</h2>
+        </li>
+        <li>
+            <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+            <label label id="APIresponse">Response:</label>
+        </li>
+        <li>
+            <label>Rule Name <span class="required">*</span></label>
+            <input type="text" id="ruleName" name="ruleName" class="field-long" />
+        </li>
+        <li>
+            <label>Rule Description </label>
+            <input type="ruleDesc" id="ruleDesc" name="ruleDesc" class="field-long" />
+        </li>
+        <li>
+            <label>Rule Type</label>
+            <select name="ruleType" id="ruleType" class="field-select">
+                <option value="Questionaire">Questionaire</option>
+                <option value="Suvery">Survey</option>
+                <option value="Demographic">Demographic</option>
+                <option value="Other">Other</option>
+            </select>
+        </li>
+        <label>Service Request Codes</label>
+        Coding System: <br>
+        <select name="codeSystem" id="codeSystem">
+            <option value="SNO"> SNOMED</option>
+            <option value="ICD"> ICD-10</option>
+            <option value="LOI">LOINC</option>
+        </select><br>    
+        Code: <br> <input type="text" id="code"><br>
+        Display: <br> <input type="text" id="display"><br>
+        Text: <br> <input type="text" id="text"><br>
+        <li>
+            <label>Notes </label>
+            <textarea name="notes" id="notes" class="field-long field-textarea"></textarea>
+        </li>
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+    </form>
+    <p id="result">     </p> 
+    <li><label id="Reportoutput"></label></li>
+    <pre id="Traveleroutput"></pre>
+    <pre id="APIoutput"></pre>
+        
+            
+        <p id="result">     </p> 
+        <pre id="travelerCreated"></pre>
+    </body>
+</html>
