@@ -133,8 +133,8 @@
         function getUUID()
         {
             const apiUrl = 'https://www.uuidgenerator.net/api/version4';
-           // const outputElement = document.getElementById('output');
-
+            const outputElement = document.getElementById('output');
+           
             fetch(apiUrl)
             .then(response => {
                 if (!response.ok) {
@@ -196,7 +196,7 @@
     </ul>
     </form>
     <p id="result">     </p> 
-    <li><label id="Reportoutput"></label></li>
+    <li><label id="output"></label></li>
     <pre id="Traveleroutput"></pre>
     <pre id="APIoutput"></pre>
         
