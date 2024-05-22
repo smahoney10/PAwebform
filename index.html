@@ -98,7 +98,7 @@
         return id;
         };
         function outputPAJson() {
-            var newID = uuidv7();
+            var newID = getUUID();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
@@ -128,6 +128,28 @@
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
             //sendToCDC();
             return false;
+        }
+
+        function getUUID()
+        {
+            const apiUrl = 'https://www.uuidgenerator.net/api/version4';
+            const outputElement = document.getElementById('output');
+
+            fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Display data in an HTML element
+                outputElement.textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            return outputElement;
         }
             </script>
 </head>
