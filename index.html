@@ -133,25 +133,18 @@
         function getUUID()
         {
             const apiUrl = 'https://www.uuidgenerator.net/api/version4';
-            
+
             const outputElement = document.getElementById('output');
-           
-            fetch(apiUrl)
-            .then(response => {
-                if (!response.ok) {
-                throw new Error('Network response was not ok');
+           fetch("https://www.uuidgenerator.net/api/version4", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
                 }
-                return response.json();
             })
-            .then(data => {
-                // Display data in an HTML element
-                outputElement = JSON.stringify(data, null, 2);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-            return outputElement;
-        }
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            
+       }
             </script>
 </head>
 <body>
