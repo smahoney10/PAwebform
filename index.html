@@ -133,7 +133,7 @@
         function getUUID()
         {
             const apiUrl = 'https://www.uuidgenerator.net/api/version4';
-            const outputElement = document.getElementById('output');
+           // const outputElement = document.getElementById('output');
 
             fetch(apiUrl)
             .then(response => {
@@ -144,7 +144,7 @@
             })
             .then(data => {
                 // Display data in an HTML element
-                outputElement.textContent = JSON.stringify(data, null, 2);
+                outputElement = JSON.stringify(data, null, 2);
             })
             .catch(error => {
                 console.error('Error:', error);
