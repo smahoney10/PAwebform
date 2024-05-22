@@ -98,7 +98,7 @@
         return id;
         };
         function outputPAJson() {
-            var newID = getUUID();
+            var newID = uuidv4();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
@@ -129,7 +129,11 @@
             //sendToCDC();
             return false;
         }
-
+        function uuidv4() {
+        return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+            (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+        );
+        }
         function getUUID()
         {
             const apiUrl = 'https://www.uuidgenerator.net/api/version4';
