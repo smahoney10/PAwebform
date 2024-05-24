@@ -102,6 +102,8 @@
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
+            var ruleKey1 = document.getElementById('ruleKey1').value;
+            var ruleValue1 = document.getElementById('ruleValue1').value;
             var codeSystem = document.getElementById('codeSystem').value;
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
@@ -112,6 +114,7 @@
             "RuleName": ruleName,
             "RuleType": ruleType,
             "RuleDescription": ruleDesc,
+            ruleKey1:ruleValue1,
             "ServiceRequestCodes": [
                 {
                     "System": codeSystem,
@@ -164,15 +167,16 @@
             <label>Rule Name <span class="required">*</span></label>
             <input type="text" id="ruleName" name="ruleName" class="field-long" />
         </li>
-        <li>
-            <label>Rule Description </label>
-            <input type="ruleDesc" id="ruleDesc" name="ruleDesc" class="field-long" />
-        </li>
+        <label>Rule 1</label>
+        Rule Key: <input id="ruleKey1" name="ruleKey1" class="field-long" />
+        Rule Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
+        
+        
         <li>
             <label>Rule Type</label>
             <select name="ruleType" id="ruleType" class="field-select">
                 <option value="Questionaire">Questionaire</option>
-                <option value="Suvery">Survey</option>
+                <option value="PDF">PDF</option>
                 <option value="Demographic">Demographic</option>
                 <option value="Other">Other</option>
             </select>
