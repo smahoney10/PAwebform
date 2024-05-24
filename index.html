@@ -114,7 +114,7 @@
             "RuleName": ruleName,
             "RuleType": ruleType,
             "RuleDescription": ruleDesc,
-            ruleKey1:ruleValue1,
+            [ruleKey1]:ruleValue1,
             "ServiceRequestCodes": [
                 {
                     "System": codeSystem,
@@ -124,7 +124,7 @@
                 }
                 ]
             };
-            data.ruleKey1 = ruleKey1;
+            //data.ruleKey1. = ruleKey1;
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
