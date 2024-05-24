@@ -104,6 +104,12 @@
             var ruleDesc = document.getElementById('ruleDesc').value;
             var ruleKey1 = document.getElementById('ruleKey1').value;
             var ruleValue1 = document.getElementById('ruleValue1').value;
+            var ruleKey2 = document.getElementById('ruleKey2').value;
+            var ruleValue2 = document.getElementById('ruleValue2').value;
+            var ruleKey3 = document.getElementById('ruleKey3').value;
+            var ruleValue3 = document.getElementById('ruleValue3').value;
+            var ruleKey4 = document.getElementById('ruleKey4').value;
+            var ruleValue4 = document.getElementById('ruleValue4').value;
             var codeSystem = document.getElementById('codeSystem').value;
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
@@ -115,6 +121,9 @@
             "RuleType": ruleType,
             "RuleDescription": ruleDesc,
             [ruleKey1]:ruleValue1,
+            [ruleKey2]:ruleValue2,
+            [ruleKey3]:ruleValue3,
+            [ruleKey4]:ruleValue4,
             "ServiceRequestCodes": [
                 {
                     "System": codeSystem,
@@ -124,7 +133,7 @@
                 }
                 ]
             };
-            //data.ruleKey1. = ruleKey1;
+            
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
@@ -184,6 +193,15 @@
         Rule Key: <input id="ruleKey1" name="ruleKey1" class="field-long" />
         Rule Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
         
+        <label>Rule 2</label>
+        Rule Key: <input id="ruleKey2" name="ruleKey2" class="field-long" />
+        Rule Value: <input id="ruleValue2" name="ruleValue2" class="field-long" />
+        <label>Rule 3</label>
+        Rule Key: <input id="ruleKey3" name="ruleKey3" class="field-long" />
+        Rule Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
+        <label>Rule 4</label>
+        Rule Key: <input id="ruleKey4" name="ruleKey4" class="field-long" />
+        Rule Value: <input id="ruleValue4" name="ruleValue4" class="field-long" />
         
         
         <label>Service Request Codes</label>
