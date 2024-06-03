@@ -98,7 +98,7 @@
         return id;
         };
 
-        function getvalue(x){
+        function getvalues(x){
             var y = 'ruleKey' + x
             var z = 'ruleValue' + x
             var ruleKey = document.getElementById(y).value;
@@ -114,12 +114,42 @@
                 //code for appending the value to url
                 }
         }
+        function getRuleKey(x){
+            var y = 'ruleKey' + x
+            var ruleKey = document.getElementById(y).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule = ",[" + ruleKey + "]:" 
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleValue(x){
+            var z = 'ruleValue' + x
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule =  ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+
         function outputPAJson() {
             var newID = uuidv4();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
-            var rule1 = getvalue(1)
+            var ruleKey1 = getRuleKey(1)
+            var ruleValue1 = getRuleValue(1)
             var rule2 = getvalue(2)
             var rule3 = getvalue(3)
             var rule4 = getvalue(4)
@@ -133,8 +163,8 @@
             "PayerRuleId": newID,
             "RuleName": ruleName,
             "RuleType": ruleType,
-            "RuleDescription": ruleDesc
-            [rules]
+            "RuleDescription": ruleDesc,
+            [ruleKey1]: ruleValue1
             ,"ServiceRequestCodes": [
                 {
                     "System": codeSystem,
