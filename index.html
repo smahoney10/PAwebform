@@ -132,10 +132,10 @@
             "RuleName": ruleName,
             "RuleType": ruleType,
             "RuleDescription": ruleDesc
-            ,rule1
-            ,rule2
-            ,rule3
-            ,rule4
+            ,[rule1]
+            [rule2]
+            [rule3]
+            [rule4]
             ,"ServiceRequestCodes": [
                 {
                     "System": codeSystem,
@@ -217,6 +217,7 @@
         <label>Condition 2</label>
         Condition: 
         <select name="ruleKey2" id="ruleKey2" class="field-select">
+            <option disabled selected value> -- select a rule -- </option>
             <option value="minAge">Minimum Age</option>
             <option value="Gender">Gender</option>
             <option value="ServiceDate">Service Date</option>
@@ -228,6 +229,7 @@
         <label>Condition 3</label>
         Condition Key: 
         <select name="ruleKey3" id="ruleKey3" class="field-select">
+            <option disabled selected value> -- select a rule -- </option>
             <option value="minAge">Minimum Age</option>
             <option value="Gender">Gender</option>
             <option value="ServiceDate">Service Date</option>
