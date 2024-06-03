@@ -106,6 +106,7 @@
                 if (/^\s*$/.test(ruleKey)){
                 //value is either empty or contains whitespace characters
                 //do not append the value
+                return ""
                 }
                 else{
                     var rule = ",[" + ruleKey + "]:" + ruleValue
