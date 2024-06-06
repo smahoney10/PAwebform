@@ -1,0 +1,261 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <title>Prior Authorization Item Webform</title>
+    <style type="text/css">
+        .form-style-1 {
+            margin:10px auto;
+            max-width: 400px;
+            padding: 20px 12px 10px 20px;
+            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        }
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+        .form-style-1 label{
+            margin:0 0 3px 0;
+            padding:0px;
+            display:block;
+            font-weight: bold;
+        }
+        .form-style-1 input[type=text], 
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea, 
+        select{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border:1px solid #BEBEBE;
+            padding: 7px;
+            margin:0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;	
+        }
+        .form-style-1 input[type=text]:focus, 
+        .form-style-1 input[type=date]:focus,
+        .form-style-1 input[type=datetime]:focus,
+        .form-style-1 input[type=number]:focus,
+        .form-style-1 input[type=search]:focus,
+        .form-style-1 input[type=time]:focus,
+        .form-style-1 input[type=url]:focus,
+        .form-style-1 input[type=email]:focus,
+        .form-style-1 textarea:focus, 
+        .form-style-1 select:focus{
+            -moz-box-shadow: 0 0 8px #88D5E9;
+            -webkit-box-shadow: 0 0 8px #88D5E9;
+            box-shadow: 0 0 8px #88D5E9;
+            border: 1px solid #88D5E9;
+        }
+        .form-style-1 .field-divided{
+            width: 49%;
+        }
+        
+        .form-style-1 .field-long{
+            width: 100%;
+        }
+        .form-style-1 .field-select{
+            width: 100%;
+        }
+        .form-style-1 .field-textarea{
+            height: 100px;
+        }
+        .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+            background: #4B99AD;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+        .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+            background: #4691A4;
+            box-shadow:none;
+            -moz-box-shadow:none;
+            -webkit-box-shadow:none;
+        }
+        .form-style-1 .required{
+            color:red;
+        }
+        </style>
+     <script>
+       // import { uuidv7 } from 'uuidv7';
+        const existingIDs = ['AA1111','XY1234'];
+        const getRandomLetters = (length = 1) => Array(length).fill().map(e => String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join('');
+        const getRandomDigits = (length = 1) => Array(length).fill().map(e => Math.floor(Math.random() * 10)).join('');
+        const generateUniqueID = () => {
+        let id = getRandomLetters(2) + getRandomDigits(4);
+        while (existingIDs.includes(id)) id = getRandomLetters(2) + getRandomDigits(4);
+        return id;
+        };
+        function outputPAJson() {
+            var newID = uuidv4();
+            var ruleName = document.getElementById('ruleName').value;
+            var ruleType = document.getElementById('ruleType').value;
+            var ruleDesc = document.getElementById('ruleDesc').value;
+            var ruleKey1 = document.getElementById('ruleKey1').value;
+            var ruleValue1 = document.getElementById('ruleValue1').value;
+            var ruleKey2 = document.getElementById('ruleKey2').value;
+            var ruleValue2 = document.getElementById('ruleValue2').value;
+            var ruleKey3 = document.getElementById('ruleKey3').value;
+            var ruleValue3 = document.getElementById('ruleValue3').value;
+            var ruleKey4 = document.getElementById('ruleKey4').value;
+            var ruleValue4 = document.getElementById('ruleValue4').value;
+            var codeSystem = document.getElementById('codeSystem').value;
+            var code = document.getElementById('code').value;
+            var display = document.getElementById('display').value;
+            var text = document.getElementById('text').value
+            var data = 
+                    {
+            "Covered": newID,
+            "PaNeeded": ruleName,
+            "DocNeeded": ruleType,
+            "DocPurpose": ruleDesc,
+            "InfoNeeded": ruleDesc,
+            "BillingCodes": [
+                {
+                    "System": codeSystem,
+                    "Code": code,
+                    "Display": display,
+                    "Text": text
+                }
+                ],
+            "ReasonCodes": reasonCodes,
+            "questionaire": questionaire,
+            "contactPointSystem": contactPointSystem,
+            "ContactPointSystem": contactPointValue,
+
+            };
+            
+            document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
+            
+            document.getElementById('nextStep').innerHTML = "JSON generated below. ";
+            //sendToCDC();
+            return false;
+        }
+        function uuidv4() {
+        return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+            (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+        );
+        }
+        function getUUID()
+        {
+            const apiUrl = 'https://www.uuidgenerator.net/api/version4';
+
+            const outputElement = document.getElementById('output');
+           fetch("https://www.uuidgenerator.net/api/version4", {
+                method: "GET",
+                headers: {
+                    "Content-type": "text/plain; charset=utf-8"
+                }
+            })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            
+       }
+            </script>
+</head>
+<body>
+<form onsubmit="return outputPAJson()" id="jsonForm">
+    <ul class="form-style-1">
+        <li>
+        <h2>Coverage PA Rule</h2>
+        </li>
+        <li>
+            <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+            Covered?
+            <select name="covered" id="covered" class="field-select">
+                <option value="covered">Covered</option>
+                <option value="not-covered">Not-Covered</option>
+                <option value="conditional">Conditional</option>
+                
+            </select>
+        </li>
+        <li>
+            PA Needed <span class="required">*</span>
+            <select name="paNeeded" id="paNeeded" class="field-select">
+                <option value="no-auth">No-Auth</option>
+                <option value="auth-needed">Auth-Needed</option>
+                <option value="satisfied">Satisfied</option>
+                <option value="performpa">Perform PA</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Documentation Needed <span class="required">*</span>
+            <select name="docNeeded" id="docNeeded" class="field-select">
+                <option value="clinical">Clinical</option>
+                <option value="admin">Admin</option>
+                <option value="both">Both</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Info Needed <span class="required">*</span>
+            <select name="infoNeeded" id="infoNeeded" class="field-select">
+                <option value="performer">Performer</option>
+                <option value="location">Location</option>
+                <option value="timeframe">Timeframe</option>                
+            </select>
+        </li>
+        <label>Billing Code</label>
+        Coding System: <br>
+        <select name="codeSystem" id="codeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="code" class="field-long"><br>
+        Display: <br> <input type="text" id="display" class="field-long"><br>
+        Text: <br> <input type="text" id="text" class="field-long"><br>
+        <label>Reason Code</label>
+        Coding System: <br>
+        <select name="reasonCodeSystem" id="ReasonCodeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="reasonCode" class="field-long"><br>
+        Display: <br> <input type="text" id="reasonDisplay" class="field-long"><br>
+        Text: <br> <input type="text" id="reasonText" class="field-long"><br>
+        <li>
+            Questionaire (URL) <span class="required">*</span>
+            <input type="text" id="questionaire" name="questionaire" class="field-long" />
+        </li>
+        <label>Contact</label>
+        Contact Method: <br>
+        <select name="contactMethod" id="contactMethod">
+            <option value="Phone"> Phone</option>
+            <option value="Fax"> Fax</option>
+            <option value="Email">email</option>
+            <option value="website">website</option>
+            <option value="other">other</option>
+        </select><br>   
+        Contact Value: <br> <input type="text" id="contactValue" class="field-long"><br>
+
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+    </form>
+    <p id="result">     </p> 
+    <li><label id="output"></label></li>
+    <pre id="Traveleroutput"></pre>
+    <pre id="APIoutput"></pre>
+        
+            
+        <p id="result">     </p> 
+        <pre id="travelerCreated"></pre>
+    </body>
+</html>
