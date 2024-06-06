@@ -108,14 +108,14 @@
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
             var text = document.getElementById('text').value
-            var ReasonCodeSystem = document.getElementById('ReasonCodeSystem').value;
+            var ReasonCodeSystem = document.getElementById('reasonCodeSystem').value;
             var reasonCode = document.getElementById('reasonCode').value;
             var reasonDisplay = document.getElementById('reasonDisplay').value;
             var reasonText = document.getElementById('reasonText').value
            
             var questionaire = document.getElementById('questionaire').value;
-            var contactPointSystem = document.getElementById('contactPointSystem').value;
-            var contactPointValue = document.getElementById('contactPointValue').value;
+            var contactPointSystem = document.getElementById('contactMethod').value;
+            var contactPointValue = document.getElementById('contactValue').value;
             var data = 
                     {
             "Covered": covered,
@@ -212,7 +212,7 @@
         </li>
         <li>
             Documentation Purpose <span class="required">*</span>
-            <select name="docPurpose" id="docNeeded" class="field-select">
+            <select name="docPurpose" id="docPurpose" class="field-select">
                 <option value="withpa">Include In Prior Authorization</option>
                 <option value="withclaim">Include With Claim</option>
                 <option value="withorder">Include With Order</option>
@@ -239,7 +239,7 @@
         Text: <br> <input type="text" id="text" class="field-long"><br>
         <label>Reason Code</label>
         Coding System: <br>
-        <select name="reasonCodeSystem" id="ReasonCodeSystem">
+        <select name="reasonCodeSystem" id="reasonCodeSystem">
             <option value="SNOMED"> SNOMED</option>
             <option value="ICD-10"> ICD-10</option>
             <option value="LOINC">LOINC</option>
