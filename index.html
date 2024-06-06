@@ -97,19 +97,63 @@
         while (existingIDs.includes(id)) id = getRandomLetters(2) + getRandomDigits(4);
         return id;
         };
+
+        function getvalues(x){
+            var y = 'ruleKey' + x
+            var z = 'ruleValue' + x
+            var ruleKey = document.getElementById(y).value;
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule = ",[" + ruleKey + "]:" + ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleKey(x){
+            var y = 'ruleKey' + x
+            var ruleKey = document.getElementById(y).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule = ",[" + ruleKey + "]:" 
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleValue(x){
+            var z = 'ruleValue' + x
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleValue)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule =  ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+
         function outputPAJson() {
             var newID = uuidv4();
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
-            var ruleKey1 = document.getElementById('ruleKey1').value;
-            var ruleValue1 = document.getElementById('ruleValue1').value;
-            var ruleKey2 = document.getElementById('ruleKey2').value;
-            var ruleValue2 = document.getElementById('ruleValue2').value;
-            var ruleKey3 = document.getElementById('ruleKey3').value;
-            var ruleValue3 = document.getElementById('ruleValue3').value;
-            var ruleKey4 = document.getElementById('ruleKey4').value;
-            var ruleValue4 = document.getElementById('ruleValue4').value;
+            var ruleKey1 = getRuleKey(1)
+            var ruleValue1 = getRuleValue(1)
+            var rule2 = getvalue(2)
+            var rule3 = getvalue(3)
+            var rule4 = getvalue(4)
+            var rules = rule1 + rule2 + rule3 + rule4
             var codeSystem = document.getElementById('codeSystem').value;
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
@@ -120,11 +164,8 @@
             "RuleName": ruleName,
             "RuleType": ruleType,
             "RuleDescription": ruleDesc,
-            [ruleKey1]:ruleValue1,
-            [ruleKey2]:ruleValue2,
-            [ruleKey3]:ruleValue3,
-            [ruleKey4]:ruleValue4,
-            "ServiceRequestCodes": [
+            [ruleKey1]: ruleValue1
+            ,"ServiceRequestCodes": [
                 {
                     "System": codeSystem,
                     "Code": code,
@@ -205,6 +246,7 @@
         <label>Condition 2</label>
         Condition: 
         <select name="ruleKey2" id="ruleKey2" class="field-select">
+            <option disabled selected value> -- select a rule -- </option>
             <option value="minAge">Minimum Age</option>
             <option value="Gender">Gender</option>
             <option value="ServiceDate">Service Date</option>
@@ -216,6 +258,7 @@
         <label>Condition 3</label>
         Condition Key: 
         <select name="ruleKey3" id="ruleKey3" class="field-select">
+            <option disabled selected value> -- select a rule -- </option>
             <option value="minAge">Minimum Age</option>
             <option value="Gender">Gender</option>
             <option value="ServiceDate">Service Date</option>
