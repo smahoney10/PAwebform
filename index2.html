@@ -1,0 +1,551 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <title>Prior Authorization Item Webform</title>
+    
+<style type="text/css">
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {margin: 0; padding: 0;}
+
+html {
+  height: 100%;
+  /*Image only BG fallback*/
+  
+  /*background = gradient + image pattern combo*/
+  background: 
+    linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+
+body {
+  font-family: montserrat, arial, verdana;
+}
+/*form styles*/
+#msform {
+  width: 400px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+}
+#msform fieldset {
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  width: 80%;
+  margin: 0 10%;
+  
+  /*stacking fieldsets above each other*/
+  position: relative;
+}
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+  display: none;
+}
+/*inputs*/
+#msform input, #msform textarea {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: montserrat;
+  color: #2C3E50;
+  font-size: 13px;
+}
+/*buttons*/
+#msform .action-button {
+  width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px;
+  margin: 10px 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+/*headings*/
+.fs-title {
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2C3E50;
+  margin-bottom: 10px;
+}
+.fs-subtitle {
+  font-weight: normal;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 20px;
+}
+/*progressbar*/
+#progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  /*CSS counters to number the steps*/
+  counter-reset: step;
+}
+#progressbar li {
+  list-style-type: none;
+  color: white;
+  text-transform: uppercase;
+  font-size: 9px;
+  width: 33.33%;
+  float: left;
+  position: relative;
+}
+#progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 20px;
+  line-height: 20px;
+  display: block;
+  font-size: 10px;
+  color: #333;
+  background: white;
+  border-radius: 3px;
+  margin: 0 auto 5px auto;
+}
+/*progressbar connectors*/
+#progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: white;
+  position: absolute;
+  left: -50%;
+  top: 9px;
+  z-index: -1; /*put it behind the numbers*/
+}
+#progressbar li:first-child:after {
+  /*connector not needed before the first step*/
+  content: none; 
+}
+/*marking active/completed steps green*/
+/*The number of the step and the connector before it = green*/
+#progressbar li.active:before,  #progressbar li.active:after{
+  background: #27AE60;
+  color: white;
+}    
+</style>
+
+<script>
+    // https://www.linkedin.com/in/atakangk/
+//jQuery time
+var current_fs, next_fs, previous_fs; //fieldsets
+var left, opacity, scale; //fieldset properties which we will animate
+var animating; //flag to prevent quick multi-click glitches
+
+$(".next").click(function(){
+  if(animating) return false;
+  animating = true;
+  
+  current_fs = $(this).parent();
+  next_fs = $(this).parent().next();
+  
+  //activate next step on progressbar using the index of next_fs
+  $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+  
+  //show the next fieldset
+  next_fs.show(); 
+  //hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now, mx) {
+      //as the opacity of current_fs reduces to 0 - stored in "now"
+      //1. scale current_fs down to 80%
+      scale = 1 - (1 - now) * 0.2;
+      //2. bring next_fs from the right(50%)
+      left = (now * 50)+"%";
+      //3. increase opacity of next_fs to 1 as it moves in
+      opacity = 1 - now;
+      current_fs.css({
+        'transform': 'scale('+scale+')',
+        'position': 'absolute'
+      });
+      next_fs.css({'left': left, 'opacity': opacity});
+    }, 
+    duration: 800, 
+    complete: function(){
+      current_fs.hide();
+      animating = false;
+    }, 
+    //this comes from the custom easing plugin
+    easing: 'easeInOutBack'
+  });
+});
+
+$(".previous").click(function(){
+  if(animating) return false;
+  animating = true;
+  
+  current_fs = $(this).parent();
+  previous_fs = $(this).parent().prev();
+  
+  //de-activate current step on progressbar
+  $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+  
+  //show the previous fieldset
+  previous_fs.show(); 
+  //hide the current fieldset with style
+  current_fs.animate({opacity: 0}, {
+    step: function(now, mx) {
+      //as the opacity of current_fs reduces to 0 - stored in "now"
+      //1. scale previous_fs from 80% to 100%
+      scale = 0.8 + (1 - now) * 0.2;
+      //2. take current_fs to the right(50%) - from 0%
+      left = ((1-now) * 50)+"%";
+      //3. increase opacity of previous_fs to 1 as it moves in
+      opacity = 1 - now;
+      current_fs.css({'left': left});
+      previous_fs.css({'transform': 'scale('+scale+')', 'opacity': opacity});
+    }, 
+    duration: 800, 
+    complete: function(){
+      current_fs.hide();
+      animating = false;
+    }, 
+    //this comes from the custom easing plugin
+    easing: 'easeInOutBack'
+  });
+});
+</script>
+    
+     <script>
+       // import { uuidv7 } from 'uuidv7';
+        const existingIDs = ['AA1111','XY1234'];
+        const getRandomLetters = (length = 1) => Array(length).fill().map(e => String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join('');
+        const getRandomDigits = (length = 1) => Array(length).fill().map(e => Math.floor(Math.random() * 10)).join('');
+        const generateUniqueID = () => {
+        let id = getRandomLetters(2) + getRandomDigits(4);
+        while (existingIDs.includes(id)) id = getRandomLetters(2) + getRandomDigits(4);
+        return id;
+        };
+
+        function getvalues(x){
+            var y = 'ruleKey' + x
+            var z = 'ruleValue' + x
+            var ruleKey = document.getElementById(y).value;
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule = ",[" + ruleKey + "]:" + ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleKey(x){
+            var y = 'ruleKey' + x
+            var ruleKey = document.getElementById(y).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    //var rule = ",[" + ruleKey + "]:" 
+                    var rule =  ruleKey
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleValue(x){
+            var z = 'ruleValue' + x
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleValue)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule =  ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+
+        function outputPAJson() {
+            var newID = uuidv4();
+            var ruleName = document.getElementById('ruleName').value;
+            var ruleType = document.getElementById('ruleType').value;
+            var ruleDesc = document.getElementById('ruleDesc').value;
+            var ruleKey1 = getRuleKey(1)
+            var ruleValue1 = getRuleValue(1)
+            var ruleKey2 = getRuleKey(2)
+            var ruleValue2 = getRuleValue(2)
+            var ruleKey3 = getRuleKey(3)
+            var ruleValue3 = getRuleValue(3)
+            var ruleKey4 = getRuleKey(4)
+            var ruleValue4 = getRuleValue(4)
+            /*var rule2 = getvalue(2)
+            var rule3 = getvalue(3)
+            var rule4 = getvalue(4)
+            var rules = rule1 + rule2 + rule3 + rule4*/
+            var codeSystem = document.getElementById('codeSystem').value;
+            var code = document.getElementById('code').value;
+            var display = document.getElementById('display').value;
+            var text = document.getElementById('text').value
+            var data = 
+                    {
+            "PayerRuleId": newID,
+            "RuleName": ruleName,
+            "RuleType": ruleType,
+            "RuleDescription": ruleDesc,
+            [ruleKey1]: ruleValue1,
+            [ruleKey2]: ruleValue2,
+            [ruleKey3]: ruleValue3,
+            [ruleKey4]: ruleValue4
+            ,"ServiceRequestCodes": [
+                {
+                    "System": codeSystem,
+                    "Code": code,
+                    "Display": display,
+                    "Text": text
+                }
+                ]
+            };
+            
+            document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
+            
+            document.getElementById('nextStep').innerHTML = "JSON generated below. ";
+            //sendToCDC();
+            return false;
+        }
+        function uuidv4() {
+        return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+            (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+        );
+        }
+        function getUUID()
+        {
+            const apiUrl = 'https://www.uuidgenerator.net/api/version4';
+
+            const outputElement = document.getElementById('output');
+           fetch("https://www.uuidgenerator.net/api/version4", {
+                method: "GET",
+                headers: {
+                    "Content-type": "text/plain; charset=utf-8"
+                }
+            })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            
+       }
+            </script>
+</head>
+<body>
+    <form id="msform">
+        <!-- progressbar -->
+        <ul id="progressbar">
+          <li class="active">Rule Setup</li>
+          <li>Coverage Requirements</li>
+          <li>Finish</li>
+        </ul>
+        <!-- fieldsets -->
+        <fieldset>
+          <h2 class="fs-title">Create a rule</h2>
+
+    <h1>Payer PA Criteria<span>Define the criteria of a new Prior Authorization item</span></h1>
+    <form onsubmit="return outputPAJson()" id="jsonForm">
+    
+    <div class="section"><span>1</span>Rule Information</div>
+        <div class="inner-wrap">
+          <label label id="nextStep">Rule Type</label>
+            <select name="ruleType" id="ruleType" class="field-select">
+                <option value="Questionaire">Questionaire</option>
+                <option value="PDF">PDF</option>
+                <option value="Demographic">Demographic</option>
+                <option value="Other">Other</option>
+            </select>
+          <label label id="nextStep">Rule Name</label>
+            <input type="text" id="ruleName" name="ruleName" class="field-long" />
+            <label label id="nextStep">Rule Description</label>
+            <input type="text" id="ruleDesc" name="ruleDesc" class="field-long" />
+        </div>
+
+        <div class="section"><span>1</span>Conditions</div>
+        <div class="inner-wrap">
+        
+            <label>Condition 1</label>
+            Condition: 
+            <select name="ruleKey1" id="ruleKey1" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>
+            Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
+            
+            <label>Condition 2</label>
+            Condition: 
+            <select name="ruleKey2" id="ruleKey2" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>        
+            Condition Value: <input id="ruleValue2" name="ruleValue2" class="field-long" />
+            
+            <label>Condition 3</label>
+            Condition Key: 
+            <select name="ruleKey3" id="ruleKey3" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>
+            Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
+            
+            <label>Condition 4</label>
+            New Condition: <input id="ruleKey4" name="ruleKey4" class="field-long" />
+            New Condition Value: <input id="ruleValue4" name="ruleValue4" class="field-long" />
+        </div>
+        
+        <div class="section"><span>1</span>Service Request Codes</div>
+        <div class="inner-wrap">
+        <label>Service Request Codes</label>
+        Coding System: <br>
+        <select name="codeSystem" id="codeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>    
+        Code: <br> <input type="text" id="code" class="field-long"><br>
+        Display: <br> <input type="text" id="display" class="field-long"><br>
+        Text: <br> <input type="text" id="text" class="field-long"><br>
+        </div>
+        
+        <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  <fieldset>
+    <ul class="form-style-1">
+        <li>
+        <h2>Coverage PA Rule</h2>
+        </li>
+        <li>
+            <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+            Covered?
+            <select name="covered" id="covered" class="field-select">
+                <option value="covered">Covered</option>
+                <option value="not-covered">Not-Covered</option>
+                <option value="conditional">Conditional</option>
+                
+            </select>
+        </li>
+        <li>
+            PA Needed <span class="required">*</span>
+            <select name="paNeeded" id="paNeeded" class="field-select">
+                <option value="no-auth">No-Auth</option>
+                <option value="auth-needed">Auth-Needed</option>
+                <option value="satisfied">Satisfied</option>
+                <option value="performpa">Perform PA</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Documentation Needed <span class="required">*</span>
+            <select name="docNeeded" id="docNeeded" class="field-select">
+                <option value="clinical">Clinical</option>
+                <option value="admin">Admin</option>
+                <option value="both">Both</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Documentation Purpose <span class="required">*</span>
+            <select name="docPurpose" id="docPurpose" class="field-select">
+                <option value="withpa">Include In Prior Authorization</option>
+                <option value="withclaim">Include With Claim</option>
+                <option value="withorder">Include With Order</option>
+                <option value="retain-doc">Medical Necessity</option>                
+            </select>
+        </li>
+        <li>
+            Info Needed <span class="required">*</span>
+            <select name="infoNeeded" id="infoNeeded" class="field-select">
+                <option value="performer">Performer</option>
+                <option value="location">Location</option>
+                <option value="timeframe">Timeframe</option>                
+            </select>
+        </li>
+        <label>Billing Code</label>
+        Coding System: <br>
+        <select name="codeSystem" id="codeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="code" class="field-long"><br>
+        Display: <br> <input type="text" id="display" class="field-long"><br>
+        Text: <br> <input type="text" id="text" class="field-long"><br>
+        <label>Reason Code</label>
+        Coding System: <br>
+        <select name="reasonCodeSystem" id="reasonCodeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="reasonCode" class="field-long"><br>
+        Display: <br> <input type="text" id="reasonDisplay" class="field-long"><br>
+        Text: <br> <input type="text" id="reasonText" class="field-long"><br>
+        <li>
+            Questionaire (URL) <span class="required">*</span>
+            <input type="text" id="questionaire" name="questionaire" class="field-long" />
+        </li>
+        <label>Contact</label>
+        Contact Method: <br>
+        <select name="contactMethod" id="contactMethod">
+            <option value="Phone"> Phone</option>
+            <option value="Fax"> Fax</option>
+            <option value="Email">email</option>
+            <option value="website">website</option>
+            <option value="other">other</option>
+        </select><br>   
+        Contact Value: <br> <input type="text" id="contactValue" class="field-long"><br>
+
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+  </fieldset>
+  <fieldset>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    
+    
+        <input type="submit" value="Submit" />
+    
+</fieldset>
+
+    </ul>
+    </form>
+    <p id="result">     </p> 
+    <li><label id="output"></label></li>
+    <pre id="Traveleroutput"></pre>
+    <pre id="APIoutput"></pre>
+        
+            
+        <p id="result">     </p> 
+        <pre id="travelerCreated"></pre>
+    </body>
+</html>
