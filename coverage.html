@@ -148,9 +148,7 @@
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
-            const txt = '{"name":"John", "age":30, "city":"New York"}'
-            const obj = JSON.parse(txt);
-            var plainText = "Is this Covered? " + obj.Covered + "<br> Is Prior Authorization Needed? " + obj.PaNeeded
+            var plainText = "Is this Covered? " + covered + "<br> Is Prior Authorization Needed? " + PaNeeded
             document.getElementById("Textoutput").innerHTML = plainText;
 
             //sendToCDC();
