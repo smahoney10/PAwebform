@@ -146,9 +146,8 @@
             };
             
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
-            var DocText = DocNeeded.options[DocNeeded.selectedIndex].text;
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
-            var plainText = "Is this Covered? " + covered + "<br> Is Prior Authorization Needed? " + PaNeeded + "<br> Is Documentation Needed? " + DocText
+            var plainText = "Is this Covered? " + covered + "<br> Is Prior Authorization Needed? " + PaNeeded + "<br> Is Documentation Needed? " + DocNeeded
             document.getElementById("Textoutput").innerHTML = plainText;
 
             //sendToCDC();
