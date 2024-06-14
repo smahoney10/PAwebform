@@ -150,7 +150,7 @@
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
 
             const obj = JSON.parse(data);
-            var plainText = obj.Covered + ", " + obj.PaNeeded
+            var plainText = "Is this Covered? " + obj.Covered + "<br> Is Prior Authorization Needed? " + obj.PaNeeded
             document.getElementById("Textoutput").innerHTML = plainText;
 
             //sendToCDC();
