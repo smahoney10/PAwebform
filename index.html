@@ -258,27 +258,33 @@
 <body>
     <h1>Payer PA Criteria<span>Define the criteria of a new Prior Authorization item</span></h1>
     <form onsubmit="return outputPAJson()" id="jsonForm">
-    
-    <div class="section"><span>1</span>Rule Information</div>
-        <div class="inner-wrap">
-          <label label id="nextStep">Rule Type</label>
+        <ul class="form-style-1">
+            <li>
+            <h2>PA Rule</h2>
+            </li>
+            <li>
+                <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+        Rule Type
             <select name="ruleType" id="ruleType" class="field-select">
                 <option value="Questionaire">Questionaire</option>
                 <option value="PDF">PDF</option>
                 <option value="Demographic">Demographic</option>
                 <option value="Other">Other</option>
             </select>
-          <label label id="nextStep">Rule Name</label>
+        </li>
+        <li>
+            Rule Name
             <input type="text" id="ruleName" name="ruleName" class="field-long" />
-            <label label id="nextStep">Rule Description</label>
+            Rule Description
             <input type="text" id="ruleDesc" name="ruleDesc" class="field-long" />
-        </div>
+        </li>
 
         <div class="section"><span>1</span>Conditions</div>
         <div class="inner-wrap">
-        
-            <label>Condition 1</label>
-            Condition: 
+        <li>Condition 1</li>
+            <li>Condition: 
             <select name="ruleKey1" id="ruleKey1" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
                 <option value="minAge">Minimum Age</option>
@@ -287,9 +293,12 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>
-            Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
-            
-            <label>Condition 2</label>
+        </li>
+        <li>Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
+        </li>
+        <li>   
+            Condition 2</li>
+            <li>
             Condition: 
             <select name="ruleKey2" id="ruleKey2" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
@@ -299,10 +308,13 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>        
+        </li>
+        <li>
             Condition Value: <input id="ruleValue2" name="ruleValue2" class="field-long" />
-            
-            <label>Condition 3</label>
-            Condition Key: 
+        </li>
+        <li>  
+            Condition 3</li>
+        <li>Condition Key: 
             <select name="ruleKey3" id="ruleKey3" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
                 <option value="minAge">Minimum Age</option>
@@ -311,26 +323,36 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>
-            Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
-            
-            <label>Condition 4</label>
+        </li>
+        <li>   Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
+        </li>    
+        <li>
+            Condition 4</li>
+            <li>
             New Condition: <input id="ruleKey4" name="ruleKey4" class="field-long" />
+        </li>
+        <li>
             New Condition Value: <input id="ruleValue4" name="ruleValue4" class="field-long" />
+        </li>
         </div>
         
         <div class="section"><span>1</span>Service Request Codes</div>
         <div class="inner-wrap">
-        <label>Service Request Codes</label>
-        Coding System: <br>
+        <li>Service Request Codes</li>
+        <li>Coding System: <br>
         <select name="codeSystem" id="codeSystem">
             <option value="SNOMED"> SNOMED</option>
             <option value="ICD-10"> ICD-10</option>
             <option value="LOINC">LOINC</option>
         </select><br>    
-        Code: <br> <input type="text" id="code" class="field-long"><br>
-        Display: <br> <input type="text" id="display" class="field-long"><br>
-        Text: <br> <input type="text" id="text" class="field-long"><br>
-        </div>
+    </li>
+    <li>Code: <br> <input type="text" id="code" class="field-long"><br>
+    </li>
+    <li>    Display: <br> <input type="text" id="display" class="field-long"><br>
+    </li>
+    <li>    Text: <br> <input type="text" id="text" class="field-long"><br>
+    </li>
+    </div>
         <li>
             <input type="submit" value="Submit" />
         </li>
