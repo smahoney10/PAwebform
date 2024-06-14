@@ -148,6 +148,11 @@
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
+
+            const obj = JSON.parse(data);
+            var plainText = obj.Covered + ", " + obj.PaNeeded
+            document.getElementById("Textoutput").innerHTML = plainText;
+
             //sendToCDC();
             return false;
         }
@@ -270,7 +275,7 @@
     <p id="result">     </p> 
     <li><label id="output"></label></li>
     <pre id="Traveleroutput"></pre>
-    <pre id="APIoutput"></pre>
+    <p id="Textoutput"></p>
         
             
         <p id="result">     </p> 
