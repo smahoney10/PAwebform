@@ -40,7 +40,7 @@
       }
    </style>
     <script>
-      function openCity(evt, cityName) {
+      function openTab(evt, tabName) {
       // Declare all variables
       var i, tabcontent, tablinks;
 
@@ -57,9 +57,11 @@
       }
 
       // Show the current tab, and add an "active" class to the button that opened the tab
-      document.getElementById(cityName).style.display = "block";
+      document.getElementById(tabName).style.display = "block";
       evt.currentTarget.className += " active";
     }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
     </script>
     <script>
        // import { uuidv7 } from 'uuidv7';
@@ -190,8 +192,8 @@
 <body>
 
   <div class="tab">
-    <button class="tablinks" onclick="openCity(event, 'RuleSetup')">Rule Setop</button>
-    <button class="tablinks" onclick="openCity(event, 'Coverage')">Coverage Requirements</button>
+    <button class="tablinks" onclick="openTab(event, 'RuleSetup')" id="defaultOpen">Rule Setup</button>
+    <button class="tablinks" onclick="openTab(event, 'Coverage')">Coverage Requirements</button>
     
   </div>
   <form onsubmit="return outputPAJson()" id="jsonForm">
