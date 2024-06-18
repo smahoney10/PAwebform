@@ -150,7 +150,28 @@
             var plainText = "Is this Covered? " + covered + "<br> Is Prior Authorization Needed? " + PaNeeded + "<br> Is Documentation Needed? " + DocNeeded
             document.getElementById("Textoutput").innerHTML = plainText;
 
-            //sendToCDC();
+            sendToSMA(data);
+            return false;
+        }
+
+        function sendToSMA(js)
+        {
+            fetch("https://lnsp1xhak2.execute-api.us-east-1.amazonaws.com/payerrules", {
+            method: "POST",
+                body: JSON.stringify(js, null, 2),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                console.log(data.id);
+               
+                
+            })
+            .catch(error => console.log(error));
             return false;
         }
         function uuidv4() {
