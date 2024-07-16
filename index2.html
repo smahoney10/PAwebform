@@ -186,6 +186,7 @@
 
         function outputPAJson() {
             var newID = uuidv4();
+            //rule setup
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
@@ -205,6 +206,7 @@
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
             var text = document.getElementById('text').value
+            //coverage screen
             var covered = document.getElementById('covered').value;
             var PaNeeded = document.getElementById('paNeeded').value;
             var DocNeeded = document.getElementById('docNeeded').value;
@@ -239,7 +241,12 @@
                     "Display": display,
                     "Text": text
                 }
-                ]
+                ],
+            "Covered": covered,
+            "PaNeeded": PaNeeded,
+            "DocNeeded": DocNeeded,
+            "DocPurpose": DocPurpose,
+            "InfoNeeded": InfoNeeded
             };
             
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
