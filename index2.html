@@ -246,7 +246,26 @@
             "PaNeeded": PaNeeded,
             "DocNeeded": DocNeeded,
             "DocPurpose": DocPurpose,
-            "InfoNeeded": InfoNeeded
+            "InfoNeeded": InfoNeeded,
+            "BillingCodes": [
+                {
+                    "System": codeSystem,
+                    "Code": code,
+                    "Display": display,
+                    "Text": text
+                }
+                ],
+            "ReasonCodes": [
+                {
+                    "System": ReasonCodeSystem,
+                    "Code": reasonCode,
+                    "Display": reasonDisplay,
+                    "Text": reasonDisplay
+                }
+                ],
+            "questionaire": questionaire,
+            "contactPointSystem": contactPointSystem,
+            "ContactPointSystem": contactPointValue
             };
             
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
