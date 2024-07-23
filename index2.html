@@ -228,20 +228,27 @@
                     {
             "PayerRuleId": newID,
             "RuleName": ruleName,
-            "RuleType": ruleType,
-            "RuleDescription": ruleDesc,
-            [ruleKey1]: ruleValue1,
-            [ruleKey2]: ruleValue2,
-            [ruleKey3]: ruleValue3,
-            [ruleKey4]: ruleValue4
-            ,"ServiceRequestCodes": [
-                {
-                    "System": codeSystem,
-                    "Code": code,
-                    "Display": display,
-                    "Text": text
-                }
-                ],
+            "PayerName": "MarylandMedicaid",
+            "RuleDetail": {
+                "PayerRuleId": newID,
+                "RuleName": ruleName,
+                "RuleType": ruleType,
+                "RuleDescription": ruleDesc,
+                [ruleKey1]: ruleValue1,
+                [ruleKey2]: ruleValue2,
+                [ruleKey3]: ruleValue3,
+                [ruleKey4]: ruleValue4
+                ,"ServiceRequestCodes": [
+                    {
+                        "System": codeSystem,
+                        "Code": code,
+                        "Display": display,
+                        "Text": text
+                    }
+                    ],
+            },
+            "CovExtension": 
+            {
             "Covered": covered,
             "PaNeeded": PaNeeded,
             "DocNeeded": DocNeeded,
@@ -266,7 +273,8 @@
             "questionaire": questionaire,
             "contactPointSystem": contactPointSystem,
             "ContactPointSystem": contactPointValue
-            };
+            }
+                    };
             
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
