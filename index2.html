@@ -212,10 +212,10 @@
             var DocNeeded = document.getElementById('docNeeded').value;
             var DocPurpose = document.getElementById('docPurpose').value;
             var InfoNeeded = document.getElementById('infoNeeded').value;
-            var codeSystem = document.getElementById('codeSystem').value;
-            var code = document.getElementById('code').value;
-            var display = document.getElementById('display').value;
-            var text = document.getElementById('text').value
+            var billingCodeSystem = document.getElementById('billingCodeSystem').value;
+            var billingCode = document.getElementById('billingCode').value;
+            var billingDisplay = document.getElementById('billingDisplay').value;
+            var billingText = document.getElementById('billingText').value
             var ReasonCodeSystem = document.getElementById('reasonCodeSystem').value;
             var reasonCode = document.getElementById('reasonCode').value;
             var reasonDisplay = document.getElementById('reasonDisplay').value;
@@ -256,10 +256,10 @@
             "InfoNeeded": InfoNeeded,
             "BillingCodes": [
                 {
-                    "System": codeSystem,
-                    "Code": code,
-                    "Display": display,
-                    "Text": text
+                    "System": billingCodeSystem,
+                    "Code": billingCode,
+                    "Display": billingDisplay,
+                    "Text": billingText
                 }
                 ],
             "ReasonCodes": [
@@ -475,14 +475,14 @@
         </li>
         <label>Billing Code</label>
         Coding System: <br>
-        <select name="codeSystem" id="codeSystem">
+        <select name="codeSystem" id="billingCodeSystem">
             <option value="SNOMED"> SNOMED</option>
             <option value="ICD-10"> ICD-10</option>
             <option value="LOINC">LOINC</option>
         </select><br>   
-        Code: <br> <input type="text" id="code" class="field-long"><br>
-        Display: <br> <input type="text" id="display" class="field-long"><br>
-        Text: <br> <input type="text" id="text" class="field-long"><br>
+        Code: <br> <input type="text" id="billingCode" class="field-long"><br>
+        Display: <br> <input type="text" id="billingDisplay" class="field-long"><br>
+        Text: <br> <input type="text" id="billingText" class="field-long"><br>
         <label>Reason Code</label>
         Coding System: <br>
         <select name="reasonCodeSystem" id="reasonCodeSystem">
