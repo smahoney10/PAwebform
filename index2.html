@@ -280,6 +280,28 @@
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
             //sendToCDC();
+
+            fetch("https://2iuxxyz7l1.execute-api.us-east-1.amazonaws.com/test/payerrule", {
+            method: "POST",
+                body: JSON.stringify(data, null, 2),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                //console.log(data.id);
+                //data = JSON.parse(data.entry);
+                //data.entry.forEach(function(element){
+                  //  console.log(element);
+               // const markup = `<li> QARS ID: ${data.id} </li>`
+                //document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+                
+            })
+            .catch(error => console.log(error));
+            return false;
             return false;
         }
         function uuidv4() {
