@@ -3,94 +3,131 @@
 <head>
     <title>Prior Authorization Item Webform</title>
     <style type="text/css">
-        .form-style-1 {
-            margin:10px auto;
-            max-width: 400px;
-            padding: 20px 12px 10px 20px;
-            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-        }
-        .form-style-1 li {
-            padding: 0;
-            display: block;
-            list-style: none;
-            margin: 10px 0 0 0;
-        }
-        .form-style-1 label{
-            margin:0 0 3px 0;
-            padding:0px;
-            display:block;
-            font-weight: bold;
-        }
-        .form-style-1 input[type=text], 
-        .form-style-1 input[type=date],
-        .form-style-1 input[type=datetime],
-        .form-style-1 input[type=number],
-        .form-style-1 input[type=search],
-        .form-style-1 input[type=time],
-        .form-style-1 input[type=url],
-        .form-style-1 input[type=email],
-        textarea, 
-        select{
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            border:1px solid #BEBEBE;
-            padding: 7px;
-            margin:0px;
-            -webkit-transition: all 0.30s ease-in-out;
-            -moz-transition: all 0.30s ease-in-out;
-            -ms-transition: all 0.30s ease-in-out;
-            -o-transition: all 0.30s ease-in-out;
-            outline: none;	
-        }
-        .form-style-1 input[type=text]:focus, 
-        .form-style-1 input[type=date]:focus,
-        .form-style-1 input[type=datetime]:focus,
-        .form-style-1 input[type=number]:focus,
-        .form-style-1 input[type=search]:focus,
-        .form-style-1 input[type=time]:focus,
-        .form-style-1 input[type=url]:focus,
-        .form-style-1 input[type=email]:focus,
-        .form-style-1 textarea:focus, 
-        .form-style-1 select:focus{
-            -moz-box-shadow: 0 0 8px #88D5E9;
-            -webkit-box-shadow: 0 0 8px #88D5E9;
-            box-shadow: 0 0 8px #88D5E9;
-            border: 1px solid #88D5E9;
-        }
-        .form-style-1 .field-divided{
-            width: 49%;
-        }
-        
-        .form-style-1 .field-long{
-            width: 100%;
-        }
-        .form-style-1 .field-select{
-            width: 100%;
-        }
-        .form-style-1 .field-textarea{
-            height: 100px;
-        }
-        .form-style-1 input[type=submit], .form-style-1 input[type=button]{
-            background: #4B99AD;
-            padding: 8px 15px 8px 15px;
-            border: none;
-            color: #fff;
-        }
-        .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
-            background: #4691A4;
-            box-shadow:none;
-            -moz-box-shadow:none;
-            -webkit-box-shadow:none;
-        }
-        .form-style-1 .required{
-            color:red;
-        }
-        </style>
+      .form-style-1 {
+          margin:10px auto;
+          max-width: 400px;
+          padding: 20px 12px 10px 20px;
+          font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+      }
+      .form-style-1 li {
+          padding: 0;
+          display: block;
+          list-style: none;
+          margin: 10px 0 0 0;
+      }
+      .form-style-1 label{
+          margin:0 0 3px 0;
+          padding:0px;
+          display:block;
+          font-weight: bold;
+      }
+      .form-style-1 input[type=text], 
+      .form-style-1 input[type=date],
+      .form-style-1 input[type=datetime],
+      .form-style-1 input[type=number],
+      .form-style-1 input[type=search],
+      .form-style-1 input[type=time],
+      .form-style-1 input[type=url],
+      .form-style-1 input[type=email],
+      textarea, 
+      select{
+          box-sizing: border-box;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          border:1px solid #BEBEBE;
+          padding: 7px;
+          margin:0px;
+          -webkit-transition: all 0.30s ease-in-out;
+          -moz-transition: all 0.30s ease-in-out;
+          -ms-transition: all 0.30s ease-in-out;
+          -o-transition: all 0.30s ease-in-out;
+          outline: none;	
+      }
+      .form-style-1 input[type=text]:focus, 
+      .form-style-1 input[type=date]:focus,
+      .form-style-1 input[type=datetime]:focus,
+      .form-style-1 input[type=number]:focus,
+      .form-style-1 input[type=search]:focus,
+      .form-style-1 input[type=time]:focus,
+      .form-style-1 input[type=url]:focus,
+      .form-style-1 input[type=email]:focus,
+      .form-style-1 textarea:focus, 
+      .form-style-1 select:focus{
+          -moz-box-shadow: 0 0 8px #88D5E9;
+          -webkit-box-shadow: 0 0 8px #88D5E9;
+          box-shadow: 0 0 8px #88D5E9;
+          border: 1px solid #88D5E9;
+      }
+      .form-style-1 .field-divided{
+          width: 49%;
+      }
+      
+      .form-style-1 .field-long{
+          width: 100%;
+      }
+      .form-style-1 .field-select{
+          width: 100%;
+      }
+      .form-style-1 .field-textarea{
+          height: 100px;
+      }
+      .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+          background: #4B99AD;
+          padding: 8px 15px 8px 15px;
+          border: none;
+          color: #fff;
+      }
+      .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+          background: #4691A4;
+          box-shadow:none;
+          -moz-box-shadow:none;
+          -webkit-box-shadow:none;
+      }
+      .form-style-1 .required{
+          color:red;
+      }
+      </style>
 
 
+   <style type="text/css">
+    /* Style the tab */
+      .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons that are used to open the tab content */
+      .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+      }
+
+      /* Change background color of buttons on hover */
+      .tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      .tab button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+      }
+   </style>
     
-     <script>
+    <script>
        // import { uuidv7 } from 'uuidv7';
         const existingIDs = ['AA1111','XY1234'];
         const getRandomLetters = (length = 1) => Array(length).fill().map(e => String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join('');
@@ -149,6 +186,7 @@
 
         function outputPAJson() {
             var newID = uuidv4();
+            //rule setup
             var ruleName = document.getElementById('ruleName').value;
             var ruleType = document.getElementById('ruleType').value;
             var ruleDesc = document.getElementById('ruleDesc').value;
@@ -168,30 +206,102 @@
             var code = document.getElementById('code').value;
             var display = document.getElementById('display').value;
             var text = document.getElementById('text').value
+            //coverage screen
+            var covered = document.getElementById('covered').value;
+            var PaNeeded = document.getElementById('paNeeded').value;
+            var DocNeeded = document.getElementById('docNeeded').value;
+            var DocPurpose = document.getElementById('docPurpose').value;
+            var InfoNeeded = document.getElementById('infoNeeded').value;
+            var billingCodeSystem = document.getElementById('billingCodeSystem').value;
+            var billingCode = document.getElementById('billingCode').value;
+            var billingDisplay = document.getElementById('billingDisplay').value;
+            var billingText = document.getElementById('billingText').value
+            var ReasonCodeSystem = document.getElementById('reasonCodeSystem').value;
+            var reasonCode = document.getElementById('reasonCode').value;
+            var reasonDisplay = document.getElementById('reasonDisplay').value;
+            var reasonText = document.getElementById('reasonText').value
+           
+            var questionaire = document.getElementById('questionaire').value;
+            var contactPointSystem = document.getElementById('contactMethod').value;
+            var contactPointValue = document.getElementById('contactValue').value;
             var data = 
                     {
             "PayerRuleId": newID,
             "RuleName": ruleName,
-            "RuleType": ruleType,
-            "RuleDescription": ruleDesc,
-            [ruleKey1]: ruleValue1,
-            [ruleKey2]: ruleValue2,
-            [ruleKey3]: ruleValue3,
-            [ruleKey4]: ruleValue4
-            ,"ServiceRequestCodes": [
+            "PayerName": "MarylandMedicaid",
+            "RuleDetail": {
+                "PayerRuleId": newID,
+                "RuleName": ruleName,
+                "RuleType": ruleType,
+                "RuleDescription": ruleDesc,
+                [ruleKey1]: ruleValue1,
+                [ruleKey2]: ruleValue2,
+                [ruleKey3]: ruleValue3,
+                [ruleKey4]: ruleValue4
+                ,"ServiceRequestCodes": [
+                    {
+                        "System": codeSystem,
+                        "Code": code,
+                        "Display": display,
+                        "Text": text
+                    }
+                    ],
+            },
+            "CovExtension": 
+            {
+            "Covered": covered,
+            "PaNeeded": PaNeeded,
+            "DocNeeded": DocNeeded,
+            "DocPurpose": DocPurpose,
+            "InfoNeeded": InfoNeeded,
+            "BillingCodes": [
                 {
-                    "System": codeSystem,
-                    "Code": code,
-                    "Display": display,
-                    "Text": text
+                    "System": billingCodeSystem,
+                    "Code": billingCode,
+                    "Display": billingDisplay,
+                    "Text": billingText
                 }
-                ]
-            };
+                ],
+            "ReasonCodes": [
+                {
+                    "System": ReasonCodeSystem,
+                    "Code": reasonCode,
+                    "Display": reasonDisplay,
+                    "Text": reasonDisplay
+                }
+                ],
+            "questionaire": questionaire,
+            "contactPointSystem": contactPointSystem,
+            "ContactPointSystem": contactPointValue
+            }
+                    };
             
             document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
             
             document.getElementById('nextStep').innerHTML = "JSON generated below. ";
             //sendToCDC();
+            
+            fetch("https://yoa7zp901j.execute-api.us-east-1.amazonaws.com/test/PayerRule", {
+            method: "POST",
+                body: JSON.stringify(data, null, 2),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                //console.log(data.id);
+                //data = JSON.parse(data.entry);
+                //data.entry.forEach(function(element){
+                  //  console.log(element);
+               // const markup = `<li> QARS ID: ${data.id} </li>`
+                //document.querySelector('ul').insertAdjacentHTML('beforeend', markup);
+                
+            })
+            .catch(error => console.log(error));
+            return false;
             return false;
         }
         function uuidv4() {
@@ -214,37 +324,43 @@
             .then((json) => console.log(json))
             
        }
-            </script>
+    </script>
 </head>
 <body>
-    <form onsubmit="return outputPAJson()" id="jsonForm">
+<ul class="form-style-1"><h2>PA FHIR Translation Tool</h2></ul>
+  <ul class="form-style-1">
+  <div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'RuleSetup')" id="defaultOpen">Rule Setup</button>
+    <button class="tablinks" onclick="openTab(event, 'Coverage')">Coverage Requirements</button>
+  </ul>
+  </div>
+  <form onsubmit="return outputPAJson()" id="jsonForm">
     <ul class="form-style-1">
-            <li>
-            <h2>Payer PA Criteria</h2>
-            </li>
-            <li>
-                <label label id="nextStep">Rule Information</label>
-        </li>
-        <li>
-        Rule Type
+      <div id="RuleSetup" class="tabcontent">
+   
+    <h3>Create a rule</h3>
+    <p>Define the criteria of a new Prior Authorization item</p>
+    
+    <div class="section"><span>1</span>Rule Information</div>
+        <div class="inner-wrap">
+          <label label id="nextStep">Rule Type</label>
             <select name="ruleType" id="ruleType" class="field-select">
                 <option value="Questionaire">Questionaire</option>
                 <option value="PDF">PDF</option>
                 <option value="Demographic">Demographic</option>
                 <option value="Other">Other</option>
             </select>
-        </li>
-        <li>
-            Rule Name
+          <label label id="nextStep">Rule Name</label>
             <input type="text" id="ruleName" name="ruleName" class="field-long" />
-            Rule Description
+            <label label id="nextStep">Rule Description</label>
             <input type="text" id="ruleDesc" name="ruleDesc" class="field-long" />
-        </li>
+        </div>
 
         <div class="section"><span>1</span>Conditions</div>
         <div class="inner-wrap">
-        <li>Condition 1</li>
-            <li>Condition: 
+        
+            <label>Condition 1</label>
+            Condition: 
             <select name="ruleKey1" id="ruleKey1" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
                 <option value="minAge">Minimum Age</option>
@@ -253,12 +369,9 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>
-        </li>
-        <li>Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
-        </li>
-        <li>   
-            Condition 2</li>
-            <li>
+            Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
+            
+            <label>Condition 2</label>
             Condition: 
             <select name="ruleKey2" id="ruleKey2" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
@@ -268,13 +381,10 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>        
-        </li>
-        <li>
             Condition Value: <input id="ruleValue2" name="ruleValue2" class="field-long" />
-        </li>
-        <li>  
-            Condition 3</li>
-        <li>Condition Key: 
+            
+            <label>Condition 3</label>
+            Condition Key: 
             <select name="ruleKey3" id="ruleKey3" class="field-select">
                 <option disabled selected value> -- select a rule -- </option>
                 <option value="minAge">Minimum Age</option>
@@ -283,39 +393,123 @@
                 <option value="ProviderType">Provider Type</option>
                 <option value="Other">Other</option>
             </select>
-        </li>
-        <li>   Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
-        </li>    
-        <li>
-            Condition 4</li>
-            <li>
+            Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
+            
+            <label>Condition 4</label>
             New Condition: <input id="ruleKey4" name="ruleKey4" class="field-long" />
-        </li>
-        <li>
             New Condition Value: <input id="ruleValue4" name="ruleValue4" class="field-long" />
-        </li>
         </div>
         
         <div class="section"><span>1</span>Service Request Codes</div>
         <div class="inner-wrap">
-        <li>Service Request Codes</li>
-        <li>Coding System: <br>
+        <label>Service Request Codes</label>
+        Coding System: <br>
         <select name="codeSystem" id="codeSystem">
             <option value="SNOMED"> SNOMED</option>
             <option value="ICD-10"> ICD-10</option>
             <option value="LOINC">LOINC</option>
         </select><br>    
-    </li>
-    <li>Code: <br> <input type="text" id="code" class="field-long"><br>
-    </li>
-    <li>    Display: <br> <input type="text" id="display" class="field-long"><br>
-    </li>
-    <li>    Text: <br> <input type="text" id="text" class="field-long"><br>
-    </li>
-    </div>
+        Code: <br> <input type="text" id="code" class="field-long"><br>
+        Display: <br> <input type="text" id="display" class="field-long"><br>
+        Text: <br> <input type="text" id="text" class="field-long"><br>
+        </div>
+        
+        <input type="button" name="next" class="next action-button" value="Next" />
+      </ul>
+  </div>
+  <ul class="form-style-1">
+  <div id="Coverage" class="tabcontent">
+    <h3>Coverage Requirements</h3>
+    <p>Define the coverage requirements of the Prior Authorization item</p>
+    <ul class="form-style-1">
         <li>
-            <input type="submit" value="Submit" />
+        <h2>Coverage PA Rule</h2>
         </li>
+        <li>
+            <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+            Covered?
+            <select name="covered" id="covered" class="field-select">
+                <option value="covered">Covered</option>
+                <option value="not-covered">Not-Covered</option>
+                <option value="conditional">Conditional</option>
+                
+            </select>
+        </li>
+        <li>
+            PA Needed <span class="required">*</span>
+            <select name="paNeeded" id="paNeeded" class="field-select">
+                <option value="no-auth">No-Auth</option>
+                <option value="auth-needed">Auth-Needed</option>
+                <option value="satisfied">Satisfied</option>
+                <option value="performpa">Perform PA</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Documentation Needed <span class="required">*</span>
+            <select name="docNeeded" id="docNeeded" class="field-select">
+                <option value="clinical">Clinical</option>
+                <option value="admin">Admin</option>
+                <option value="both">Both</option>
+                <option value="conditional">Conditional</option>                
+            </select>
+        </li>
+        <li>
+            Documentation Purpose <span class="required">*</span>
+            <select name="docPurpose" id="docPurpose" class="field-select">
+                <option value="withpa">Include In Prior Authorization</option>
+                <option value="withclaim">Include With Claim</option>
+                <option value="withorder">Include With Order</option>
+                <option value="retain-doc">Medical Necessity</option>                
+            </select>
+        </li>
+        <li>
+            Info Needed <span class="required">*</span>
+            <select name="infoNeeded" id="infoNeeded" class="field-select">
+                <option value="performer">Performer</option>
+                <option value="location">Location</option>
+                <option value="timeframe">Timeframe</option>                
+            </select>
+        </li>
+        <label>Billing Code</label>
+        Coding System: <br>
+        <select name="codeSystem" id="billingCodeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="billingCode" class="field-long"><br>
+        Display: <br> <input type="text" id="billingDisplay" class="field-long"><br>
+        Text: <br> <input type="text" id="billingText" class="field-long"><br>
+        <label>Reason Code</label>
+        Coding System: <br>
+        <select name="reasonCodeSystem" id="reasonCodeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>   
+        Code: <br> <input type="text" id="reasonCode" class="field-long"><br>
+        Display: <br> <input type="text" id="reasonDisplay" class="field-long"><br>
+        Text: <br> <input type="text" id="reasonText" class="field-long"><br>
+        <li>
+            Questionaire (URL) <span class="required">*</span>
+            <input type="text" id="questionaire" name="questionaire" class="field-long" />
+        </li>
+        <label>Contact</label>
+        Contact Method: <br>
+        <select name="contactMethod" id="contactMethod">
+            <option value="Phone"> Phone</option>
+            <option value="Fax"> Fax</option>
+            <option value="Email">email</option>
+            <option value="website">website</option>
+            <option value="other">other</option>
+        </select><br>   
+        Contact Value: <br> <input type="text" id="contactValue" class="field-long"><br>
+        <input type="submit" value="Submit" />
+    </ul>
+  </div>
     </ul>
     </form>
     <p id="result">     </p> 
@@ -326,5 +520,30 @@
             
         <p id="result">     </p> 
         <pre id="travelerCreated"></pre>
+
+        <script>
+          function openTab(evt, tabName) {
+          // Declare all variables
+          var i, tabcontent, tablinks;
+    
+          // Get all elements with class="tabcontent" and hide them
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+    
+          // Get all elements with class="tablinks" and remove the class "active"
+          tablinks = document.getElementsByClassName("tablinks");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+          }
+    
+          // Show the current tab, and add an "active" class to the button that opened the tab
+          document.getElementById(tabName).style.display = "block";
+          evt.currentTarget.className += " active";
+        }
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+        </script>
     </body>
 </html>

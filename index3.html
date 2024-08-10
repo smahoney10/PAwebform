@@ -1,0 +1,330 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+    <title>Prior Authorization Item Webform</title>
+    <style type="text/css">
+        .form-style-1 {
+            margin:10px auto;
+            max-width: 400px;
+            padding: 20px 12px 10px 20px;
+            font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        }
+        .form-style-1 li {
+            padding: 0;
+            display: block;
+            list-style: none;
+            margin: 10px 0 0 0;
+        }
+        .form-style-1 label{
+            margin:0 0 3px 0;
+            padding:0px;
+            display:block;
+            font-weight: bold;
+        }
+        .form-style-1 input[type=text], 
+        .form-style-1 input[type=date],
+        .form-style-1 input[type=datetime],
+        .form-style-1 input[type=number],
+        .form-style-1 input[type=search],
+        .form-style-1 input[type=time],
+        .form-style-1 input[type=url],
+        .form-style-1 input[type=email],
+        textarea, 
+        select{
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border:1px solid #BEBEBE;
+            padding: 7px;
+            margin:0px;
+            -webkit-transition: all 0.30s ease-in-out;
+            -moz-transition: all 0.30s ease-in-out;
+            -ms-transition: all 0.30s ease-in-out;
+            -o-transition: all 0.30s ease-in-out;
+            outline: none;	
+        }
+        .form-style-1 input[type=text]:focus, 
+        .form-style-1 input[type=date]:focus,
+        .form-style-1 input[type=datetime]:focus,
+        .form-style-1 input[type=number]:focus,
+        .form-style-1 input[type=search]:focus,
+        .form-style-1 input[type=time]:focus,
+        .form-style-1 input[type=url]:focus,
+        .form-style-1 input[type=email]:focus,
+        .form-style-1 textarea:focus, 
+        .form-style-1 select:focus{
+            -moz-box-shadow: 0 0 8px #88D5E9;
+            -webkit-box-shadow: 0 0 8px #88D5E9;
+            box-shadow: 0 0 8px #88D5E9;
+            border: 1px solid #88D5E9;
+        }
+        .form-style-1 .field-divided{
+            width: 49%;
+        }
+        
+        .form-style-1 .field-long{
+            width: 100%;
+        }
+        .form-style-1 .field-select{
+            width: 100%;
+        }
+        .form-style-1 .field-textarea{
+            height: 100px;
+        }
+        .form-style-1 input[type=submit], .form-style-1 input[type=button]{
+            background: #4B99AD;
+            padding: 8px 15px 8px 15px;
+            border: none;
+            color: #fff;
+        }
+        .form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
+            background: #4691A4;
+            box-shadow:none;
+            -moz-box-shadow:none;
+            -webkit-box-shadow:none;
+        }
+        .form-style-1 .required{
+            color:red;
+        }
+        </style>
+
+
+    
+     <script>
+       // import { uuidv7 } from 'uuidv7';
+        const existingIDs = ['AA1111','XY1234'];
+        const getRandomLetters = (length = 1) => Array(length).fill().map(e => String.fromCharCode(Math.floor(Math.random() * 26) + 65)).join('');
+        const getRandomDigits = (length = 1) => Array(length).fill().map(e => Math.floor(Math.random() * 10)).join('');
+        const generateUniqueID = () => {
+        let id = getRandomLetters(2) + getRandomDigits(4);
+        while (existingIDs.includes(id)) id = getRandomLetters(2) + getRandomDigits(4);
+        return id;
+        };
+
+        function getvalues(x){
+            var y = 'ruleKey' + x
+            var z = 'ruleValue' + x
+            var ruleKey = document.getElementById(y).value;
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule = ",[" + ruleKey + "]:" + ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleKey(x){
+            var y = 'ruleKey' + x
+            var ruleKey = document.getElementById(y).value;
+                if (/^\s*$/.test(ruleKey)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    //var rule = ",[" + ruleKey + "]:" 
+                    var rule =  ruleKey
+                    return rule
+                //code for appending the value to url
+                }
+        }
+        function getRuleValue(x){
+            var z = 'ruleValue' + x
+            var ruleValue = document.getElementById(z).value;
+                if (/^\s*$/.test(ruleValue)){
+                //value is either empty or contains whitespace characters
+                //do not append the value
+                return ""
+                }
+                else{
+                    var rule =  ruleValue
+                    return rule
+                //code for appending the value to url
+                }
+        }
+
+        function outputPAJson() {
+            var newID = uuidv4();
+            var ruleName = document.getElementById('ruleName').value;
+            var ruleType = document.getElementById('ruleType').value;
+            var ruleDesc = document.getElementById('ruleDesc').value;
+            var ruleKey1 = getRuleKey(1)
+            var ruleValue1 = getRuleValue(1)
+            var ruleKey2 = getRuleKey(2)
+            var ruleValue2 = getRuleValue(2)
+            var ruleKey3 = getRuleKey(3)
+            var ruleValue3 = getRuleValue(3)
+            var ruleKey4 = getRuleKey(4)
+            var ruleValue4 = getRuleValue(4)
+            /*var rule2 = getvalue(2)
+            var rule3 = getvalue(3)
+            var rule4 = getvalue(4)
+            var rules = rule1 + rule2 + rule3 + rule4*/
+            var codeSystem = document.getElementById('codeSystem').value;
+            var code = document.getElementById('code').value;
+            var display = document.getElementById('display').value;
+            var text = document.getElementById('text').value
+            var data = 
+                    {
+            "PayerRuleId": newID,
+            "RuleName": ruleName,
+            "RuleType": ruleType,
+            "RuleDescription": ruleDesc,
+            [ruleKey1]: ruleValue1,
+            [ruleKey2]: ruleValue2,
+            [ruleKey3]: ruleValue3,
+            [ruleKey4]: ruleValue4
+            ,"ServiceRequestCodes": [
+                {
+                    "System": codeSystem,
+                    "Code": code,
+                    "Display": display,
+                    "Text": text
+                }
+                ]
+            };
+            
+            document.getElementById('Traveleroutput').innerHTML = JSON.stringify(data, null, 2);
+            
+            document.getElementById('nextStep').innerHTML = "JSON generated below. ";
+            //sendToCDC();
+            return false;
+        }
+        function uuidv4() {
+        return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c =>
+            (+c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> +c / 4).toString(16)
+        );
+        }
+        function getUUID()
+        {
+            const apiUrl = 'https://www.uuidgenerator.net/api/version4';
+
+            const outputElement = document.getElementById('output');
+           fetch("https://www.uuidgenerator.net/api/version4", {
+                method: "GET",
+                headers: {
+                    "Content-type": "text/plain; charset=utf-8"
+                }
+            })
+            .then((response) => response.json())
+            .then((json) => console.log(json))
+            
+       }
+            </script>
+</head>
+<body>
+    <form onsubmit="return outputPAJson()" id="jsonForm">
+    <ul class="form-style-1">
+            <li>
+            <h2>Payer PA Criteria</h2>
+            </li>
+            <li>
+                <label label id="nextStep">Rule Information</label>
+        </li>
+        <li>
+        Rule Type
+            <select name="ruleType" id="ruleType" class="field-select">
+                <option value="Questionaire">Questionaire</option>
+                <option value="PDF">PDF</option>
+                <option value="Demographic">Demographic</option>
+                <option value="Other">Other</option>
+            </select>
+        </li>
+        <li>
+            Rule Name
+            <input type="text" id="ruleName" name="ruleName" class="field-long" />
+            Rule Description
+            <input type="text" id="ruleDesc" name="ruleDesc" class="field-long" />
+        </li>
+
+        <div class="section"><span>1</span>Conditions</div>
+        <div class="inner-wrap">
+        <li>Condition 1</li>
+            <li>Condition: 
+            <select name="ruleKey1" id="ruleKey1" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>
+        </li>
+        <li>Condition Value: <input id="ruleValue1" name="ruleValue1" class="field-long" />
+        </li>
+        <li>   
+            Condition 2</li>
+            <li>
+            Condition: 
+            <select name="ruleKey2" id="ruleKey2" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>        
+        </li>
+        <li>
+            Condition Value: <input id="ruleValue2" name="ruleValue2" class="field-long" />
+        </li>
+        <li>  
+            Condition 3</li>
+        <li>Condition Key: 
+            <select name="ruleKey3" id="ruleKey3" class="field-select">
+                <option disabled selected value> -- select a rule -- </option>
+                <option value="minAge">Minimum Age</option>
+                <option value="Gender">Gender</option>
+                <option value="ServiceDate">Service Date</option>
+                <option value="ProviderType">Provider Type</option>
+                <option value="Other">Other</option>
+            </select>
+        </li>
+        <li>   Condition Value: <input id="ruleValue3" name="ruleValue3" class="field-long" />
+        </li>    
+        <li>
+            Condition 4</li>
+            <li>
+            New Condition: <input id="ruleKey4" name="ruleKey4" class="field-long" />
+        </li>
+        <li>
+            New Condition Value: <input id="ruleValue4" name="ruleValue4" class="field-long" />
+        </li>
+        </div>
+        
+        <div class="section"><span>1</span>Service Request Codes</div>
+        <div class="inner-wrap">
+        <li>Service Request Codes</li>
+        <li>Coding System: <br>
+        <select name="codeSystem" id="codeSystem">
+            <option value="SNOMED"> SNOMED</option>
+            <option value="ICD-10"> ICD-10</option>
+            <option value="LOINC">LOINC</option>
+        </select><br>    
+    </li>
+    <li>Code: <br> <input type="text" id="code" class="field-long"><br>
+    </li>
+    <li>    Display: <br> <input type="text" id="display" class="field-long"><br>
+    </li>
+    <li>    Text: <br> <input type="text" id="text" class="field-long"><br>
+    </li>
+    </div>
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+    </form>
+    <p id="result">     </p> 
+    <li><label id="output"></label></li>
+    <pre id="Traveleroutput"></pre>
+    <pre id="APIoutput"></pre>
+        
+            
+        <p id="result">     </p> 
+        <pre id="travelerCreated"></pre>
+    </body>
+</html>
